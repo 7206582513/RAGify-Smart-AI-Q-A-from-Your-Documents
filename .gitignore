@@ -1,0 +1,34 @@
+# Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Uploaded files and saved embeddings
+uploaded_files/
+saved_embeddings/
+uploads/
+
+# Temporary DB and files
+/tmp/
+*.lance
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+
+# Log files
+*.log
+
+# Cache files
+.cache/

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Document RAG App 🚀</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            background: #1e1e2f;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #4B49AC, #7DA0FA);
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #7DA0FA, #4B49AC);
+        }
+        .btn-outline-primary {
+            color: #7DA0FA;
+            border: 1px solid #7DA0FA;
+            border-radius: 12px;
+            margin: 5px;
+            padding: 8px 15px;
+            font-size: 15px;
+        }
+        .btn-outline-primary:hover {
+            background-color: #7DA0FA;
+            color: #121212;
+        }
+        input.form-control, textarea.form-control {
+            background-color: #121221;
+            color: #e0e0e0;
+            border-radius: 10px;
+            border: 1px solid #2c5364;
+        }
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #7DA0FA, #4B49AC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .alert-info {
+            background: #2c5364;
+            border: none;
+            color: #80cbc4;
+            font-size: 1.1rem;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Multi-Document RAG App</h1>
+
+    <div class="card">
+        <form method="POST" action="/ask" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="files" class="form-label">📂 Upload Documents</label>
+                <input class="form-control" type="file" id="files" name="files" multiple required>
+            </div>
+
+            <div class="mb-3">
+                <label for="question" class="form-label">❓ Enter Your Question</label>
+                <input class="form-control" type="text" id="question" name="question" placeholder="E.g., What is the lease start date?">
+            </div>
+
+            <button class="btn btn-primary w-100" type="submit">Ask</button>
+        </form>
+
+        {% if suggested_questions %}
+        <div class="mt-4">
+            <h5>💡 Suggested Questions:</h5>
+            {% for q in suggested_questions %}
+            <form method="POST" action="/ask" enctype="multipart/form-data" style="display:inline;">
+                <input type="hidden" name="question" value="{{ q }}">
+                <button class="btn btn-outline-primary" type="submit">{{ q }}</button>
+            </form>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if answer %}
+        <div class="mt-5">
+            <h4>📝 Answer:</h4>
+            <div class="alert alert-info">{{ answer }}</div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

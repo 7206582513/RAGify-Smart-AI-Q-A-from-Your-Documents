@@ -1,0 +1,10 @@
+Flask
+transformers
+torch
+scikit-learn
+docx2txt
+datasets
+nltk
+lancedb
+google-generativeai
+pdfplumber

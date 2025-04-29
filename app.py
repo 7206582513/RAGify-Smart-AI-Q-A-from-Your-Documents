@@ -30,7 +30,7 @@ nltk.download('punkt')
 model = SentenceTransformer('all-MiniLM-L6-v2')  # faster embeddings
 
 # Setup Gemini
-genai.configure(api_key="AIzaSyBieuOZEPetX3Rdf0bIGfyIhht5SMGhVI8")  # Replace with your real key
+genai.configure(api_key="Your_GEMINI_API_KEY")  # Replace with your real key
 gemini_model = genai.GenerativeModel('gemini-1.5-pro')
 
 
